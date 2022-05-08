@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Exam</string>
+    <string name="splash_screen_header">Ultra Cleaner</string>
+    <string name="check_button_text1">I have read and acknowledged the\u00A0</string>
+    <string name="check_button_text2">Privacy Policy\u00A0</string>
+    <string name="check_button_text3">and the\u00A0</string>
+    <string name="check_button_text4">Terms of Service</string>
+    <string name="splash_error_msg">you have to agree</string>
+    <string name="splash_btn_text">Start</string>
+    <string name="loading">Loading\u00A0\u00A0\u00A0</string>
+    <string name="loading_percents">75%</string>
+</resources>
