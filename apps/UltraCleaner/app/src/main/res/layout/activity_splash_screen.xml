@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SplashScreen"
     android:orientation="vertical"
-    android:background="@color/app_background"
+    android:background="@color/app_background_blue"
     android:gravity="bottom">
 
     <LinearLayout
@@ -106,7 +106,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="15dp"
-            android:width="150dp"
             android:text="@string/splash_btn_text"
             android:background="@drawable/splash_btn_style"
             android:fontFamily="@font/roboto_bold"

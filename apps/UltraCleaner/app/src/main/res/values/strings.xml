@@ -9,4 +9,6 @@
     <string name="splash_btn_text">Start</string>
     <string name="loading">Loading\u00A0\u00A0\u00A0</string>
     <string name="loading_percents">75%</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

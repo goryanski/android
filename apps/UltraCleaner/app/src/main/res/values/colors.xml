@@ -7,9 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="app_background">#2c65fc</color>
+    <color name="app_background_blue">#2c65fc</color>
+    <color name="app_background_light_blue">#e7f6ff</color>
     <color name="error">#DF4545</color>
     <color name="splash_chb_text">#bfd0fe</color>
     <color name="btn_start_enable">#10347E</color>
     <color name="btn_start_disable">#6796F4</color>
+    <color name="selected_btn">#10347d</color>
+    <color name="warning_icons_color">#EB2E46</color>
 </resources>

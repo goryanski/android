@@ -1,18 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="bottom">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1">
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fr_place"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.example.exam.ChargeBoosterFragment"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="0dp"
+        android:padding="20dp"
+        android:orientation="horizontal"
+        android:background="@color/app_background_light_blue"
+       >
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:gravity="start">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageButton
+                android:id="@+id/red_rocket_btn"
+                android:layout_width="69dp"
+                android:layout_height="82dp"
+                android:background="@drawable/btn_menu"
+                android:backgroundTint="@color/selected_btn"
+                android:onClick="onBtnMenuClicked"
+                android:src="@drawable/ic_rocket_red_btn" />
+
+                <ImageView
+                    android:id="@+id/warning_rocket_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/ic_attention"/>
+
+            <ImageButton
+                android:id="@+id/white_rocket_btn"
+                android:layout_width="69dp"
+                android:layout_height="82dp"
+                android:background="@drawable/btn_menu"
+                android:backgroundTint="@color/selected_btn"
+                android:onClick="onBtnMenuClicked"
+                android:src="@drawable/ic_rocket_white_btn"
+                android:visibility="invisible" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/red_battery_btn"
+                android:layout_width="69dp"
+                android:layout_height="82dp"
+                android:background="@drawable/btn_menu"
+                android:backgroundTint="@color/white"
+                android:onClick="onBtnMenuClicked"
+                android:src="@drawable/ic_battery_red_btn"/>
+
+            <ImageView
+                android:id="@+id/warning_battery_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_attention"/>
+
+            <ImageButton
+                android:id="@+id/white_battery_btn"
+                android:layout_width="69dp"
+                android:layout_height="82dp"
+                android:background="@drawable/btn_menu"
+                android:backgroundTint="@color/white"
+                android:onClick="onBtnMenuClicked"
+                android:visibility="invisible"
+                android:src="@drawable/ic_battery_blue_btn"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/red_ventilator_btn"
+                android:layout_width="69dp"
+                android:layout_height="82dp"
+                android:background="@drawable/btn_menu"
+                android:backgroundTint="@color/white"
+                android:onClick="onBtnMenuClicked"
+                android:src="@drawable/ic_ventilator_red_btn"/>
+
+            <ImageView
+                android:id="@+id/warning_ventilator_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_attention"/>
+
+            <ImageButton
+                android:id="@+id/white_ventilator_btn"
+                android:layout_width="69dp"
+                android:layout_height="82dp"
+                android:background="@drawable/btn_menu"
+                android:backgroundTint="@color/white"
+                android:onClick="onBtnMenuClicked"
+                android:visibility="invisible"
+                android:src="@drawable/ic_ventilator_blue_btn"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:gravity="end">
+
+            <ImageButton
+                android:id="@+id/red_trash_btn"
+                android:layout_width="69dp"
+                android:layout_height="82dp"
+                android:background="@drawable/btn_menu"
+                android:backgroundTint="@color/white"
+                android:onClick="onBtnMenuClicked"
+                android:src="@drawable/ic_trash_red_btn"/>
+
+            <ImageView
+                android:id="@+id/warning_trash_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_attention"/>
+
+            <ImageButton
+                android:id="@+id/white_trash_btn"
+                android:layout_width="69dp"
+                android:layout_height="82dp"
+                android:background="@drawable/btn_menu"
+                android:backgroundTint="@color/white"
+                android:onClick="onBtnMenuClicked"
+                android:src="@drawable/ic_trash_blue_btn"
+                android:visibility="invisible" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>
