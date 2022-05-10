@@ -11,4 +11,7 @@
     <string name="loading_percents">75%</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="charge_booster_title">Charge\nBooster</string>
+    <string name="adverting_label">adverting</string>
+    <string name="off_label">off</string>
 </resources>

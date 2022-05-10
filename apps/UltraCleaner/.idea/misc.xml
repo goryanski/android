@@ -14,6 +14,8 @@
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/08 exam/Exam/app/src/main/res/layout/activity_loading_screen.xml" value="0.33" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/08 exam/Exam/app/src/main/res/layout/activity_main.xml" value="0.1707193515704154" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/08 exam/Exam/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
+        <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ad_label_bckg.xml" value="0.2625" />
+        <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/background_angle_blue.xml" value="0.2625" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/btn_menu.xml" value="0.2305" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/btn_test.xml" value="0.2305" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ic_attention.xml" value="0.2305" />
@@ -22,6 +24,8 @@
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ic_battery_white_btn.xml" value="0.2305" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ic_check_button_ellipse.xml" value="0.2305" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ic_check_button_tick.xml" value="0.2305" />
+        <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ic_icrobot_vector.xml" value="0.2625" />
+        <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ic_robot.xml" value="0.2625" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ic_rocket_btn.xml" value="0.2305" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ic_rocket_red_btn.xml" value="0.2305" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ic_rocket_white_btn.xml" value="0.2305" />
@@ -32,13 +36,14 @@
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ic_ventilator_btn.xml" value="0.2305" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ic_ventilator_red_btn.xml" value="0.2305" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/ic_ventilator_white_btn.xml" value="0.2305" />
+        <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/robot_vector.xml" value="0.2625" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/rocket_optimised_btn.xml" value="0.2305" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/splash_btn_style.xml" value="0.2305" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/drawable/unselected_btn_color.xml" value="0.2625" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/layout/activity_main.xml" value="0.1814814814814815" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/layout/fragment_battery_saver.xml" value="0.3946135831381733" />
-        <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/layout/fragment_charge_booster.xml" value="0.3946135831381733" />
+        <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/layout/fragment_charge_booster.xml" value="0.33" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/layout/fragment_junk_cleaner.xml" value="0.3946135831381733" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/layout/fragment_optimizer.xml" value="0.1" />
         <entry key="..\:/Users/user/Desktop/STEP (part2)/Android/to git/Android/apps/UltraCleaner/app/src/main/res/menu/bottom_nav_menu.xml" value="0.5979166666666667" />
