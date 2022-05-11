@@ -14,4 +14,21 @@
     <string name="charge_booster_title">Charge\nBooster</string>
     <string name="adverting_label">adverting</string>
     <string name="off_label">off</string>
+    <string name="boost">boost</string>
+    <string name="_24_83_free_space">24,83 free space</string>
+    <string name="_23_64_gb">23,64 Gb /</string>
+    <string name="_95">95%</string>
+    <string name="battery_nsaver">Battery\nSaver</string>
+    <string name="charging_time_nremaning">Charging time\nremaning</string>
+    <string name="_20">20%</string>
+    <string name="_13h_48m">13h 48m</string>
+    <string name="boost_nbattery">boost\nbattery</string>
+    <string name="optimizer">Optimizer</string>
+    <string name="degrees">31&#176;C</string>
+    <string name="cpu_temperature">CPU\ntemperature</string>
+    <string name="optimize">optimize</string>
+    <string name="junk_cleaner">Junk Cleaner</string>
+    <string name="clean">clean</string>
+    <string name="also_you_can">Also you can</string>
+    <string name="_23_64_gb_24_83_free_space">23,64 Gb /24,83 free space</string>
 </resources>

@@ -16,4 +16,9 @@
     <color name="selected_btn">#10347d</color>
     <color name="warning_icons_color">#EB2E46</color>
     <color name="main_blue">#10347E</color>
+    <color name="boost_progressbar">#2c3787</color>
+    <color name="start_btn_battery">#6e37c8</color>
+    <color name="start_orange_gradient">#f41f36</color>
+    <color name="end_orange_gradient">#ff8a3e</color>
+    <color name="text_final_screen">#10347D</color>
 </resources>
