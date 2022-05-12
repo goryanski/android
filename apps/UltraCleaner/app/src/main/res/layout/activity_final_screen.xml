@@ -20,8 +20,6 @@
             android:background="@drawable/background_angle_blue"
             android:rotation="-13" />
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/ic_arrow_back" />
+                android:background="@drawable/ic_arrow_back"
+                android:onClick="onButtonBackClicked"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -59,16 +58,48 @@
 
 
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/app_background_light_blue">
+
+        <TextView
+            android:id="@+id/optimized_elements_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_0_4"
+            android:textSize="30sp"
+            android:textColor="@color/text_final_screen"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/all_optimized_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/device_optimized_completely"
+            android:textSize="24sp"
+            android:textColor="@color/text_final_screen"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:visibility="invisible"/>
+
+
+
         <LinearLayout
+            android:id="@+id/boost_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:background="@drawable/final_screen_section_background"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:padding="10dp">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,7 +113,142 @@
                 android:layout_gravity="center"
                 android:textSize="20sp"
                 android:fontFamily="@font/roboto_bold"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_final_boost"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/final_screen_btn"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/boost"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:onClick="onOptimizationButtonClicked"/>
+        </LinearLayout>
 
+
+        <LinearLayout
+            android:id="@+id/boost_battery_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/final_screen_section_background"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_battery_big_final"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/charging_time_remaning_13h_48m"
+                android:textColor="@color/text_final_screen"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_final_boost_battery"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/final_screen_btn"
+                android:backgroundTint="@color/start_btn_battery"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/boost_nbattery"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:onClick="onOptimizationButtonClicked"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/optimize_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/final_screen_section_background"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_ventilator_gradient"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/temperature_value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_31_c_cpu_temperature"
+                android:textColor="@color/text_final_screen"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_final_optimize"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/final_screen_btn_gradient"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/optimize"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                android:onClick="onOptimizationButtonClicked"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/clean_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/final_screen_section_background"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:padding="10dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_trash_big_icon"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_23_64_gb_24_83_free_space"
+                android:textColor="@color/text_final_screen"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_bold"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_final_clean"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/final_screen_btn"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/clean"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                android:onClick="onOptimizationButtonClicked"/>
         </LinearLayout>
 
     </LinearLayout>

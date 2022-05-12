@@ -259,6 +259,8 @@ public class JunkCleanerFragment extends Fragment {
                                 setMenuButtonToOptimizedState();
                                 setMenuButtonsAccessibility(true);
                                 optimizationCompleted = true;
+                                // save state before going to FinalScreen activity
+                                saveFragmentState();
                                 android.os.SystemClock.sleep(50);
 
                                 // go to next activity
@@ -290,10 +292,14 @@ public class JunkCleanerFragment extends Fragment {
         whiteTrashBtn.setEnabled(enable);
     }
 
-    // save fragment state before going to next fragment
+    // save fragment state before going to next fragment (switch menu buttons)
     @Override
     public void onStop() {
         super.onStop();
+        saveFragmentState();
+    }
+
+    private void saveFragmentState() {
         sharedPreferences = getActivity().getSharedPreferences(FRAGMENT_STATE, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("savedJunkCleanerFragmentState", optimizationCompleted);

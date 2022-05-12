@@ -31,4 +31,8 @@
     <string name="clean">clean</string>
     <string name="also_you_can">Also you can</string>
     <string name="_23_64_gb_24_83_free_space">23,64 Gb /24,83 free space</string>
+    <string name="charging_time_remaning_13h_48m">Charging time remaning 13h 48m</string>
+    <string name="_31_c_cpu_temperature">31°C CPU temperature</string>
+    <string name="_0_4">0 / 4</string>
+    <string name="device_optimized_completely">Device optimized completely</string>
 </resources>

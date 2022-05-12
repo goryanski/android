@@ -22,7 +22,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // check every fragment - if there was optimization already - set menu buttons to optimized state
+
+        /*
+        * Instruction how to reset optimizing and start again - just click on image in every fragment (image with robot, battery, cpu or trash basket) -
+        * after this you can start optimizing again
+        */
+
+
+        // set menu buttons appearance
+        // check every fragment (except default fragment ChargeBoosterFragment) - if there was optimization already - set menu buttons to optimized state
         SharedPreferences sharedPreferences;
 
         sharedPreferences = getSharedPreferences("BatterySaverFragmentState", MODE_PRIVATE);
@@ -46,7 +54,30 @@ public class MainActivity extends AppCompatActivity {
             whiteTrashBtn.setVisibility(View.VISIBLE);
         }
 
-        // load default fragment (ChargeBoosterFragment)
+
+
+        // set fragment to load first
+        // check SharedPreferences from final screen (if there chose fragment to load here)
+        sharedPreferences = getSharedPreferences("SelectedFragmentOnFinalScreen", MODE_PRIVATE);
+        String fragmentName = sharedPreferences.getString("savedFragmentName", "");
+        if(!fragmentName.equals("")) {
+            switch (fragmentName) {
+                case "ChargeBoosterFragment":
+                    fragment = new ChargeBoosterFragment();
+                    break;
+                case "BatterySaverFragment":
+                    fragment = new BatterySaverFragment();
+                    break;
+                case "OptimizerFragment":
+                    fragment = new OptimizerFragment();
+                    break;
+                case "JunkCleanerFragment":
+                    fragment = new JunkCleanerFragment();
+                    break;
+            }
+        }
+
+        // if there are no fragment to load from final screen - load default fragment (ChargeBoosterFragment)
         loadFragment();
     }
 

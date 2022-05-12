@@ -216,7 +216,7 @@ public class OptimizerFragment extends Fragment {
         whiteBatteryBtn.setBackgroundTintList(ColorStateList.valueOf(unselectedBtnColor));
         whiteBatteryBtn.setImageResource(R.drawable.ic_battery_blue_btn);
         whiteRocketBtn.setBackgroundTintList(ColorStateList.valueOf(unselectedBtnColor));
-        whiteRocketBtn.setImageResource(R.drawable.ic_ventilator_blue_btn);
+        whiteRocketBtn.setImageResource(R.drawable.ic_rocket_blue_btn);
         whiteTrashBtn.setBackgroundTintList(ColorStateList.valueOf(unselectedBtnColor));
         whiteTrashBtn.setImageResource(R.drawable.ic_trash_blue_btn);
     }
@@ -279,6 +279,8 @@ public class OptimizerFragment extends Fragment {
                                 setMenuButtonToOptimizedState();
                                 setMenuButtonsAccessibility(true);
                                 optimizationCompleted = true;
+                                // save state before going to FinalScreen activity
+                                saveFragmentState();
                                 android.os.SystemClock.sleep(50);
 
                                 // go to next activity
@@ -310,10 +312,14 @@ public class OptimizerFragment extends Fragment {
         whiteTrashBtn.setEnabled(enable);
     }
 
-    // save fragment state before going to next fragment
+    // save fragment state before going to next fragment (switch menu buttons)
     @Override
     public void onStop() {
         super.onStop();
+        saveFragmentState();
+    }
+
+    private void saveFragmentState() {
         sharedPreferences = getActivity().getSharedPreferences(FRAGMENT_STATE, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean("savedOptimizerFragmentState", optimizationCompleted);
