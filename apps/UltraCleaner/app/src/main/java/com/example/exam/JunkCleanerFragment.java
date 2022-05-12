@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -25,6 +26,8 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +49,7 @@ public class JunkCleanerFragment extends Fragment {
     Button btnCleanerStart;
     int selectedBtnColor;
     int unselectedBtnColor;
+    View viewFinder;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -92,10 +96,10 @@ public class JunkCleanerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // get view to use method findViewById()
-        View view = inflater.inflate(R.layout.fragment_junk_cleaner, container, false);
+        viewFinder = inflater.inflate(R.layout.fragment_junk_cleaner, container, false);
 
         // hide progressBar
-        progressBar = view.findViewById(R.id.cleaner_progressbar);
+        progressBar = viewFinder.findViewById(R.id.cleaner_progressbar);
         progressBar.setVisibility(View.GONE);
 
         // check optimization state on this fragment
@@ -103,7 +107,7 @@ public class JunkCleanerFragment extends Fragment {
         optimizationCompleted = sharedPreferences.getBoolean("savedJunkCleanerFragmentState", false);
 
         // find start optimization button
-        btnCleanerStart = view.findViewById(R.id.btn_trash_clean_start);
+        btnCleanerStart = viewFinder.findViewById(R.id.btn_trash_clean_start);
         // find menu button that appear when optimization on this fragment is done
         whiteTrashBtn = getActivity().findViewById(R.id.white_trash_btn);
         // define color of selected/unselected menu button
@@ -122,13 +126,16 @@ public class JunkCleanerFragment extends Fragment {
         }
 
 
+        // optimization percents and free space value
+        setSavedTexViewsInfo();
+
         // Ad Mob
         MobileAds.initialize(this.getContext(), new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-        AdView mAdView = view.findViewById(R.id.adView);
+        AdView mAdView = viewFinder.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
@@ -163,17 +170,80 @@ public class JunkCleanerFragment extends Fragment {
 
         // create possibility to change optimization state in this fragment manually - change data to let do optimization again (for testing).
         // For this you have to click on robot image and fragment state will reset
-        ImageView basketImg = view.findViewById(R.id.basket_img);
+        ImageView basketImg = viewFinder.findViewById(R.id.basket_img);
         basketImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 optimizationCompleted = false;
                 setStartButtonToNotOptimizedState();
                 switchFragmentToNotOptimizedState();
+                changeOptimizationLabels();
             }
         });
 
-        return view;
+        return viewFinder;
+    }
+
+    private void setSavedTexViewsInfo() {
+        boolean isTextViewsInfoSaved = sharedPreferences.getBoolean("isTextViewsTrashInfoSaved", false);
+        if(isTextViewsInfoSaved) {
+            String percent = sharedPreferences.getString("savedOptimizationTrashPercent", "");
+            String filledMemory = sharedPreferences.getString("savedOptimizationTrashFilledMemory", "");
+            String enableMemory = sharedPreferences.getString("savedOptimizationTrashEnableMemory", "");
+            setInfoToTextViews(percent, filledMemory, enableMemory);
+        } else {
+            changeOptimizationLabels();
+        }
+    }
+
+    private void changeOptimizationLabels() {
+        // set optimization percent
+        int newPercent = 0;
+        Random random = new Random();
+        int minPercent = 0;
+        int maxPercent = 0;
+        if(optimizationCompleted) {
+            minPercent = 50;
+            maxPercent = 80;
+        } else {
+            minPercent = 85;
+            maxPercent = 99;
+        }
+        newPercent = random.nextInt(maxPercent - minPercent + 1) + minPercent;
+        String newPercentStr = newPercent + "%";
+
+
+        // find amount of space by percent
+        double allEnableMemory = 24.83;
+        double x = (allEnableMemory * newPercent) / 100;
+        // round to 2 digit after point
+        double filledMemory = Math.round(x * 100.0) / 100.0;
+
+        String filledMemoryStr = filledMemory + " Gb /";
+        String enableMemoryStr = allEnableMemory + " free space";
+
+        // set result to TextViews
+        setInfoToTextViews(newPercentStr, filledMemoryStr, enableMemoryStr);
+
+        // save state
+        sharedPreferences = getActivity().getSharedPreferences(FRAGMENT_STATE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isTextViewsTrashInfoSaved", true);
+        editor.putString("savedOptimizationTrashPercent", newPercentStr);
+        editor.putString("savedOptimizationTrashEnableMemory", enableMemoryStr);
+        editor.putString("savedOptimizationTrashFilledMemory", filledMemoryStr);
+        editor.commit();
+    }
+
+    private void setInfoToTextViews(String percent, String filledMemory, String enableMemory) {
+        TextView percentLabel = viewFinder.findViewById(R.id.cleaner_percent_label);
+        percentLabel.setText(percent);
+
+        TextView filledMemoryLabel = viewFinder.findViewById(R.id.cleaner_fill_space);
+        filledMemoryLabel.setText(filledMemory);
+
+        TextView allMemoryLabel = viewFinder.findViewById(R.id.cleaner_all_memory);
+        allMemoryLabel.setText(enableMemory);
     }
 
     private void findAllMenuButtons() {
@@ -261,6 +331,7 @@ public class JunkCleanerFragment extends Fragment {
                                 optimizationCompleted = true;
                                 // save state before going to FinalScreen activity
                                 saveFragmentState();
+                                changeOptimizationLabels();
                                 android.os.SystemClock.sleep(50);
 
                                 // go to next activity

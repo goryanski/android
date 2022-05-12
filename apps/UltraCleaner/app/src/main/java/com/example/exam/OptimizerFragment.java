@@ -29,6 +29,8 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
+import java.util.Random;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link OptimizerFragment#newInstance} factory method to
@@ -49,7 +51,7 @@ public class OptimizerFragment extends Fragment {
     Button btnOptimizeStart;
     int selectedBtnColor;
     int unselectedBtnColor;
-
+    View viewFinder;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -96,10 +98,10 @@ public class OptimizerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // get view to use method findViewById()
-        View view = inflater.inflate(R.layout.fragment_optimizer, container, false);
+        viewFinder = inflater.inflate(R.layout.fragment_optimizer, container, false);
 
         // hide progressBar
-        progressBar = view.findViewById(R.id.optimizer_progressbar);
+        progressBar = viewFinder.findViewById(R.id.optimizer_progressbar);
         progressBar.setVisibility(View.GONE);
 
         // check optimization state on this fragment
@@ -107,13 +109,13 @@ public class OptimizerFragment extends Fragment {
         optimizationCompleted = sharedPreferences.getBoolean("savedOptimizerFragmentState", false);
 
         // find start optimization button
-        btnOptimizeStart = view.findViewById(R.id.btn_optimize_start);
+        btnOptimizeStart = viewFinder.findViewById(R.id.btn_optimize_start);
         // find menu button that appear when optimization on this fragment is done
         whiteVentilatorBtn = getActivity().findViewById(R.id.white_ventilator_btn);
         // define color of selected/unselected menu button
         selectedBtnColor = getResources().getColor(R.color.selected_btn);
         unselectedBtnColor = getResources().getColor(R.color.white);
-        TextView cpuTemperatureText = view.findViewById(R.id.cpu_temperature_text);
+        TextView cpuTemperatureText = viewFinder.findViewById(R.id.cpu_temperature_text);
         setGradientToText(cpuTemperatureText);
 
         findAllMenuButtons();
@@ -127,13 +129,17 @@ public class OptimizerFragment extends Fragment {
             switchFragmentToNotOptimizedState();
         }
 
+
+        // optimization percents and free space value
+        setSavedTexViewsInfo();
+
         // Ad Mob
         MobileAds.initialize(this.getContext(), new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-        AdView mAdView = view.findViewById(R.id.adView);
+        AdView mAdView = viewFinder.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
@@ -168,18 +174,63 @@ public class OptimizerFragment extends Fragment {
 
         // create possibility to change optimization state in this fragment manually - change data to let do optimization again (for testing).
         // For this you have to click on cpu image and fragment state will reset
-        ImageView robotImg = view.findViewById(R.id.cpu_img);
+        ImageView robotImg = viewFinder.findViewById(R.id.cpu_img);
         robotImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 optimizationCompleted = false;
                 setStartButtonToNotOptimizedState();
                 switchFragmentToNotOptimizedState();
+                changeOptimizationLabels();
             }
         });
 
-        return view;
+        return viewFinder;
     }
+
+    private void setSavedTexViewsInfo() {
+        boolean isTextViewsInfoSaved = sharedPreferences.getBoolean("isTextViewsOptimizationInfoSaved", false);
+        if(isTextViewsInfoSaved) {
+            String percent = sharedPreferences.getString("savedTemperatureOptimizationPercent", "");
+            setInfoToTextViews(percent);
+        } else {
+            changeOptimizationLabels();
+        }
+    }
+
+    private void changeOptimizationLabels() {
+        // set optimization percent
+        int newPercent = 0;
+        Random random = new Random();
+        int minPercent = 0;
+        int maxPercent = 0;
+        if(optimizationCompleted) {
+            minPercent = 20;
+            maxPercent = 36;
+        } else {
+            minPercent = 44;
+            maxPercent = 55;
+        }
+        newPercent = random.nextInt(maxPercent - minPercent + 1) + minPercent;
+        String newPercentStr = newPercent + "%";
+
+
+        // set result to TextViews
+        setInfoToTextViews(newPercentStr);
+
+        // save state
+        sharedPreferences = getActivity().getSharedPreferences(FRAGMENT_STATE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isTextViewsOptimizationInfoSaved", true);
+        editor.putString("savedTemperatureOptimizationPercent", newPercentStr);
+        editor.commit();
+    }
+
+    private void setInfoToTextViews(String percent) {
+        TextView percentLabel = viewFinder.findViewById(R.id.cpu_temperature_text);
+        percentLabel.setText(percent);
+    }
+
 
     private void setGradientToText(TextView cpuTemperatureText) {
         int startColor = getResources().getColor(R.color.start_orange_gradient);
@@ -281,6 +332,7 @@ public class OptimizerFragment extends Fragment {
                                 optimizationCompleted = true;
                                 // save state before going to FinalScreen activity
                                 saveFragmentState();
+                                changeOptimizationLabels();
                                 android.os.SystemClock.sleep(50);
 
                                 // go to next activity

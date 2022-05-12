@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -25,6 +26,8 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +49,7 @@ public class BatterySaverFragment extends Fragment {
     Button btnSaveBatteryStart;
     int selectedBtnColor;
     int unselectedBtnColor;
+    View viewFinder;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -91,10 +95,10 @@ public class BatterySaverFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // get view to use method findViewById()
-        View view = inflater.inflate(R.layout.fragment_battery_saver, container, false);
+        viewFinder = inflater.inflate(R.layout.fragment_battery_saver, container, false);
 
         // hide progressBar
-        progressBar = view.findViewById(R.id.battery_progressbar);
+        progressBar = viewFinder.findViewById(R.id.battery_progressbar);
         progressBar.setVisibility(View.GONE);
 
         // check optimization state on this fragment
@@ -103,7 +107,7 @@ public class BatterySaverFragment extends Fragment {
 
 
         // find start optimization button
-        btnSaveBatteryStart = view.findViewById(R.id.btn_save_battery_start);
+        btnSaveBatteryStart = viewFinder.findViewById(R.id.btn_save_battery_start);
         // find menu button that appear when optimization on this fragment is done
         whiteBatteryBtn = getActivity().findViewById(R.id.white_battery_btn);
         // define color of selected/unselected menu button
@@ -120,6 +124,9 @@ public class BatterySaverFragment extends Fragment {
             switchFragmentToNotOptimizedState();
         }
 
+        // optimization percents and free space value
+        setSavedTexViewsInfo();
+
 
         // Ad Mob
         MobileAds.initialize(this.getContext(), new OnInitializationCompleteListener() {
@@ -127,7 +134,7 @@ public class BatterySaverFragment extends Fragment {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-        AdView mAdView = view.findViewById(R.id.adView);
+        AdView mAdView = viewFinder.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
@@ -162,17 +169,18 @@ public class BatterySaverFragment extends Fragment {
 
         // create possibility to change optimization state in this fragment manually - change data to let do optimization again (for testing).
         // For this you have to click on battery image, move to next fragment and return to this fragment - fragment state will reset
-        ImageView batteryImg = view.findViewById(R.id.battery_img);
+        ImageView batteryImg = viewFinder.findViewById(R.id.battery_img);
         batteryImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 optimizationCompleted = false;
                 setStartButtonToNotOptimizedState();
                 switchFragmentToNotOptimizedState();
+                changeOptimizationLabels();
             }
         });
 
-        return view;
+        return viewFinder;
     }
 
     private void switchFragmentToNotOptimizedState() {
@@ -215,6 +223,7 @@ public class BatterySaverFragment extends Fragment {
                                 optimizationCompleted = true;
                                 // save state before going to FinalScreen activity
                                 saveFragmentState();
+                                changeOptimizationLabels();
                                 android.os.SystemClock.sleep(50);
 
                                 // go to next activity
@@ -225,6 +234,86 @@ public class BatterySaverFragment extends Fragment {
                 }).start();
             }
         });
+    }
+
+    private void setSavedTexViewsInfo() {
+        boolean isTextViewsInfoSaved = sharedPreferences.getBoolean("isTextViewsBatteryInfoSaved", false);
+        if(isTextViewsInfoSaved) {
+            String percent = sharedPreferences.getString("savedOptimizationBatteryPercent", "");
+            String timeRemaining = sharedPreferences.getString("savedChargingTimeRemaining", "");
+            setInfoToTextViews(percent, timeRemaining);
+        } else {
+            changeOptimizationLabels();
+        }
+    }
+
+    private void changeOptimizationLabels() {
+        // set optimization percent
+        Random random = new Random();
+        int newPercent = 0;
+        int minPercent = 0;
+        int maxPercent = 0;
+        if(optimizationCompleted) {
+            minPercent = 85;
+            maxPercent = 96;
+        } else {
+            minPercent = 20;
+            maxPercent = 45;
+        }
+        newPercent = random.nextInt(maxPercent - minPercent + 1) + minPercent;
+        String newPercentStr = newPercent + "%";
+
+
+        // set remaining hours
+        int newHours = 0;
+        int minHours = 0;
+        int maxHours = 0;
+        if(optimizationCompleted) {
+            minHours = 24;
+            maxHours = 38;
+        } else {
+            minHours = 8;
+            maxHours = 15;
+        }
+        newHours = random.nextInt(maxHours - minHours + 1) + minHours;
+        String newHoursStr = newHours + "h ";
+
+
+        // set remaining minutes
+        int newMinutes = 0;
+        int minMinutes = 0;
+        int maxMinutes = 0;
+        if(optimizationCompleted) {
+            minMinutes = 24;
+            maxMinutes = 38;
+        } else {
+            minMinutes = 8;
+            maxMinutes = 15;
+        }
+        newMinutes = random.nextInt(maxMinutes - minMinutes + 1) + minMinutes;
+        String newMinutesStr = newMinutes + "m";
+
+        String newTimeStr = newHoursStr + newMinutesStr;
+
+
+        // set result to TextViews
+        setInfoToTextViews(newPercentStr, newTimeStr);
+
+        // save state
+        sharedPreferences = getActivity().getSharedPreferences(FRAGMENT_STATE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isTextViewsBatteryInfoSaved", true);
+        editor.putString("savedOptimizationBatteryPercent", newPercentStr);
+        editor.putString("savedChargingTimeRemaining", newTimeStr);
+        editor.commit();
+    }
+
+    private void setInfoToTextViews(String percent, String timeRemaining) {
+        TextView percentLabel = viewFinder.findViewById(R.id.battery_percent_label);
+        percentLabel.setText(percent);
+
+        TextView timeRemainingLabel = viewFinder.findViewById(R.id.time_remaining_label);
+        timeRemainingLabel.setText(timeRemaining);
     }
 
     private void findAllMenuButtons() {

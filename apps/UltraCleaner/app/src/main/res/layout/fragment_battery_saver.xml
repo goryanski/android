@@ -103,6 +103,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="20dp">
                         <TextView
+                            android:id="@+id/battery_percent_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/_20"
@@ -118,6 +119,7 @@
                             android:textSize="20sp"
                             android:layout_marginTop="10dp" />
                         <TextView
+                            android:id="@+id/time_remaining_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/_13h_48m"
