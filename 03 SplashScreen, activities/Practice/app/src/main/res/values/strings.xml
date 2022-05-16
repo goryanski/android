@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Practice</string>
+    <string name="num_card">Number Card</string>
+    <string name="num_card_hint">0000 0000 0000 0000</string>
+    <string name="month_hint">02</string>
+    <string name="slash">/</string>
+    <string name="year_hint">2023</string>
+    <string name="cvv">CVV</string>
+    <string name="cvv_hint">123</string>
+    <string name="card_holder">Card Holder</string>
+    <string name="card_holder_hint">Igor Ivanov</string>
+    <string name="btn_save">Save</string>
+    <string name="date">DATE</string>
+</resources>

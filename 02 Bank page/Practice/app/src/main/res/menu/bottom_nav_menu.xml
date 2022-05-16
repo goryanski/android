@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/add_funds"
+        android:title=""
+        android:icon="@drawable/ic_add_funds"/>
+    <item android:id="@+id/set_limit"
+        android:title=""
+        android:icon="@drawable/ic_set_limit"/>
+    <item android:id="@+id/security_setting"
+        android:title=""
+        android:icon="@drawable/ic_security_setting"/>
+
+</menu>

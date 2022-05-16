@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="toolbar_text">CARD DETAIL</string>
+    <string name="top_panel_text1">Debit Card</string>
+    <string name="top_panel_text2">Personal account</string>
+    <string name="top_panel_text3">1000,</string>
+    <string name="top_panel_text4">00</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
