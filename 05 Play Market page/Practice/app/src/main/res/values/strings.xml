@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Practice06</string>
+    <string name="app_play_market_name">Call of Duty Mobile Сезон 4</string>
+    <string name="app_description">Activision Publishing, Inc.\t\tЭкшен</string>
+    <string name="age_limit">M (17+)</string>
+    <string name="count_people_set_rating">14 932 079</string>
+    <string name="btn_text">Установить</string>
+    <string name="plus_description">Добавить в список желаний</string>
+    <string name="advertising">Есть реклама\t\t</string>
+    <string name="dot">.</string>
+    <string name="advertising2">\tПоддерживаются покупки в</string>
+    <string name="advertising3">приложении</string>
+    <string name="info">Это приложение можно скачать на некоторые из</string>
+    <string name="info2">ваших устройств.</string>
+    <string name="reviews">Отзывы</string>
+    <string name="rules">Правила публикации отзывов и другая информация</string>
+    <string name="rating_number">4,3</string>
+    <string name="all_together">Всего:\t</string>
+</resources>

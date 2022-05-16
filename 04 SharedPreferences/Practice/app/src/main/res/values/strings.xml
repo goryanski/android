@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Practice05</string>
+    <string name="btn_color">Change\ncolor</string>
+    <string name="btn_alignment">Change\nalignment</string>
+    <string name="apply">apply</string>
+    <string name="left">Left</string>
+    <string name="center">Center</string>
+    <string name="right">Right</string>
+    <string name="prompt">color selector</string>
+    <string name="error_label_text">no color selected</string>
+</resources>

@@ -1,0 +1,4 @@
+ Верстка Play Market + RecyclerView (вывод списка игр, кде каждая игра - класс в ArrayList)
+
+сверстать:   https://docs.google.com/document/d/1BL22TOtRhMadp9Eif1e7d0goCWl85OvDmwWysBJWg5U/edit
+текст можн взять отсюда:  https://play.google.com/store/apps/details?id=com.activision.callofduty.shooter&hl=ru&gl=US

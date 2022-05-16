@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="dark_green">#33691e</color>
+    <color name="light_green">#c3d9af</color>
+    <color name="info_green">#b2cb39</color>
+    <color name="stars_color">#737373</color>
+    <color name="progress_bar5">#79c9a1</color>
+    <color name="progress_bar4">#aed888</color>
+    <color name="progress_bar3">#ffd935</color>
+    <color name="progress_bar2">#ffb235</color>
+    <color name="progress_bar1">#ff8c5a</color>
+    <color name="recycler_background">#eeeeee</color>
+</resources>
